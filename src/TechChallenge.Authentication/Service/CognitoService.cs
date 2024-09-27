@@ -105,7 +105,7 @@ namespace TechChallenge.Authentication.Service
             }
         }
 
-        private async Task<bool> UsuarioJaExiste(UsuarioDto usuario)
+        public async Task<bool> UsuarioJaExiste(UsuarioDto usuario)
         {
             try
             {
