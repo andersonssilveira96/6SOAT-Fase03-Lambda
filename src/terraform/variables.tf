@@ -9,11 +9,3 @@ variable "region" {
   description = "Região default do AWS Academy"
 }
 
-variable "user-techuser" {
-  default     = "techuser"
-  description = "Usuário padrão"
-}
-
-variable "secrets-name" {
-  default = "lambda-auth-credentials"
-}

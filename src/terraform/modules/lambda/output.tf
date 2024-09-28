@@ -5,7 +5,7 @@ output "lambda_arn_auth" {
 
 output "lambda_arn_cadastro" {
   description = "ARN da lambda"
-  value       = aws_lambda_function.techchallenge_lambda_cadastro.invoke_arn
+  value       = aws_lambda_function.techchallenge_lambda_signup.invoke_arn
 }
 
 output "nome_lambda_auth" {
@@ -15,5 +15,5 @@ output "nome_lambda_auth" {
 
 output "nome_lambda_cadastro" {
   description = "Nome da Lambda Cadastro"
-  value       = aws_lambda_function.techchallenge_lambda_cadastro.function_name
+  value       = aws_lambda_function.techchallenge_lambda_signup.function_name
 }
