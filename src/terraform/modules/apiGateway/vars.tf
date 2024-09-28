@@ -15,5 +15,5 @@ variable "nome_lambda_auth" {
 }
 
 variable "nome_lambda_signup" {
-  description = "Nome da Lambda SignUp"
+  description = "Nome da Lambda de SignUp"
 }

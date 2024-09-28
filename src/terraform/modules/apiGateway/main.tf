@@ -40,19 +40,19 @@ resource "aws_api_gateway_method" "signup" {
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "lambda_cadastro" {
+resource "aws_api_gateway_integration" "lambda_signup" {
   rest_api_id             = aws_api_gateway_rest_api.techchallenge_api_gateweay.id
   resource_id             = aws_api_gateway_method.signup.resource_id
   http_method             = aws_api_gateway_method.signup.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = var.arn_lambda_cadastro
+  uri                     = var.arn_lambda_signup
 }
 
 resource "aws_api_gateway_deployment" "gateway_deployment" {
   depends_on = [
     aws_api_gateway_integration.lambda_auth,
-    aws_api_gateway_integration.lambda_cadastro
+    aws_api_gateway_integration.lambda_signup
   ]
   rest_api_id = aws_api_gateway_rest_api.techchallenge_api_gateweay.id
   stage_name  = var.environment
