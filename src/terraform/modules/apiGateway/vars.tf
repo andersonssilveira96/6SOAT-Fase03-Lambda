@@ -2,8 +2,8 @@ variable "arn_lambda_auth" {
   description = "ARN da Lambda auth"
 }
 
-variable "arn_lambda_cadastro" {
-  description = "ARN da Lambda Cadastro"
+variable "arn_lambda_signup" {
+  description = "ARN da Lambda SignUp"
 }
 
 variable "environment" {
@@ -14,6 +14,6 @@ variable "nome_lambda_auth" {
   description = "Nome da Lambda Auth"
 }
 
-variable "nome_lambda_cadastro" {
-  description = "Nome da Lambda Cadastro"
+variable "nome_lambda_signup" {
+  description = "Nome da Lambda SignUp"
 }

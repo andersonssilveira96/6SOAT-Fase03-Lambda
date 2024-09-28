@@ -101,7 +101,7 @@ jobs:
             run: >-
               aws lambda update-function-code --function-name
               techchallenge-lambda-auth --zip-file fileb://./auth_lambda.zip
-          - name: Deploy to AWS Lambda cadastro
+          - name: Deploy to AWS Lambda signup
             run: >-
               aws lambda update-function-code --function-name
-              techchallenge-lambda-cadastro --zip-file fileb://./auth_lambda.zip
+              techchallenge-lambda-signup --zip-file fileb://./auth_lambda.zip
