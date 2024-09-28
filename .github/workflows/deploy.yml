@@ -19,9 +19,9 @@ jobs:
         with:
           dotnet-version: 8.x
       - name: Restore NuGet packages
-        run: dotnet restore src/TechChallenge.Authentication/**/*.csproj
+        run: dotnet restore TechChallenge.Authentication/*.csproj
       - name: Build
-        run: dotnet build src/TechChallenge.Authentication/**/*.csproj
+        run: dotnet build TechChallenge.Authentication/*.csproj
   tf-deploy:
       name: Terraform Deploy
       needs:
