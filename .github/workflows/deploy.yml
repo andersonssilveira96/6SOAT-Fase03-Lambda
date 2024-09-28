@@ -44,9 +44,9 @@ jobs:
         - name: Configure AWS Dotnet CLI
           run: dotnet tool install -g Amazon.Lambda.Tools
         - name: Restore NuGet packages
-          run: dotnet restore TechChallenge.Authentication/**/*.csproj
+          run: dotnet restore TechChallenge.Authentication/*.csproj
         - name: Build
-          run: dotnet build TechChallenge.Authentication/**/*.csproj
+          run: dotnet build TechChallenge.Authentication/*.csproj
         - name: Prepare package
           run: >-
             dotnet lambda package --project-location 
@@ -87,10 +87,10 @@ jobs:
           - name: Configure AWS Dotnet CLI
             run: dotnet tool install -g Amazon.Lambda.Tools
           - name: Restore NuGet packages
-            run: dotnet restore src/TechChallenge.Authentication/**/*.csproj
+            run: dotnet restore src/TechChallenge.Authentication/*.csproj
           - name: Build
             run: >-
-              dotnet build src/TechChallenge.Authentication/**/*.csproj
+              dotnet build src/TechChallenge.Authentication/*.csproj
               --no-restore
           - name: Prepare package
             run: >-
