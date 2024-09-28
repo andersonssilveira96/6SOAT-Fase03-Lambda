@@ -1,5 +1,4 @@
 name: Deploy auth Infrastructure
-
 on:
   push:
     branches:
@@ -8,10 +7,9 @@ on:
   workflow_dispatch:
 
 jobs:
+ ##############################################################
 
-##############################################################
-
-  build:
+ build:
    runs-on: ubuntu-latest
    defaults:
         run:
@@ -26,26 +24,28 @@ jobs:
         dotnet-version: 8.x
         
     - name: Restore NuGet packages
-      run: dotnet restore TechChallenge.Authentication/**/*.csproj
+      run: dotnet restore src/TechChallenge.Authentication/**/*.csproj
   
     - name: Build
-      run: dotnet build TechChallenge.Authentication/**/*.csproj
+      run: dotnet build src/TechChallenge.Authentication/**/*.csproj
 
-  tf-deploy:
+   tf-deploy:
     name: Terraform Deploy
-
+    needs: 
+      - build
+      
     if: github.ref == 'refs/heads/release' || github.ref == 'refs/heads/master'
-
+  
     runs-on: ubuntu-latest
-
+  
     defaults:
         run:
           working-directory: src
-          
+            
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+  
       - name: Login to AWS
         uses: aws-actions/configure-aws-credentials@v3
         with:          
@@ -53,7 +53,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
+  
       - name: Configure AWS Dotnet CLI
         run: dotnet tool install -g Amazon.Lambda.Tools
   
@@ -62,26 +62,26 @@ jobs:
   
       - name: Build
         run: dotnet build TechChallenge.Authentication/**/*.csproj
-
+  
       - name: Prepare package
         run: dotnet lambda package --project-location  TechChallenge.Authentication/**/ --output-package TechChallenge.Authentication/auth_lambda.zip --configuration Release --framework net8.0
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-
+  
       - name: Prepare environment
         run: terraform -chdir=terraform/ init 
-
+  
       - name: Terraform Plan
         run: terraform -chdir=terraform/ plan -lock=false -no-color -input=false
-
+  
       - name: Execute terraform apply
         run: terraform -chdir=terraform/ apply -lock=false -auto-approve -input=false
-
-        
-##############################################################
-
-  deploy:
+  
+          
+  ##############################################################
+  
+    deploy:
      needs: 
       - tf-deploy
     
