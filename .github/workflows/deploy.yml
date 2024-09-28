@@ -50,7 +50,7 @@ jobs:
         - name: Prepare package
           run: >-
             dotnet lambda package --project-location 
-            TechChallenge.Authentication/**/ --output-package
+            TechChallenge.Authentication/ --output-package
             TechChallenge.Authentication/auth_lambda.zip --configuration Release
             --framework net8.0
         - name: Setup Terraform
@@ -95,7 +95,7 @@ jobs:
           - name: Prepare package
             run: >-
               dotnet lambda package --project-location 
-              src/TechChallenge.Authentication/**/ --output-package
+              src/TechChallenge.Authentication/ --output-package
               auth_lambda.zip --configuration Release --framework net8.0
           - name: Deploy to AWS Lambda auth
             run: >-
